@@ -14,7 +14,7 @@ const useStyles= makeStyles(theme=>({
   container : {
     width : "85vw",
     height : "85vh",
-    backgroundColor : theme.palette.primary.dark,
+    backgroundColor : "white",
     ...theme.centerItems,
     marginTop : "20px",
     '& .text' : {
@@ -35,7 +35,7 @@ const useStyles= makeStyles(theme=>({
 }))
 
 export default function SimpleContainer() {
-  const [anchorEl, setAnchorEl] = useState("USA");
+  const [anchorEl, setAnchorEl] = useState(null);
   const [country, setCountry] = useState(null);
   const [data, setData] = useState(null)
   const classes = useStyles();
@@ -79,7 +79,7 @@ export default function SimpleContainer() {
       <Container maxWidth="lg" className={classes.container}>
         <Box className={classes.button}>
           <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleOpen}>
-            Select a country \0/
+            Select a country
           </Button>
           <Menu
             id="simple-menu"
@@ -93,9 +93,8 @@ export default function SimpleContainer() {
                 <MenuItem key={index} className={classes.menuItem} onClick={handleClose}>{d.country}</MenuItem>
               )
             })}
-          
           </Menu>
-          <DataBox country={country} />
+          <DataBox data={country} className={classes.container} />
         </Box>
       </Container>
     </React.Fragment>

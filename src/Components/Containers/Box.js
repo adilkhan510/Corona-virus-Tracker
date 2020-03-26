@@ -1,23 +1,23 @@
 import React from 'react'
+import SimpleTable from './DataTable'
 import { Box, makeStyles, Typography } from '@material-ui/core';
+import Chart from './Chart'
 
 const myStyles = makeStyles(theme=>({
     box :{
-        width : "95%",
-        marginLeft : "10px",
+        width : "85%",
         marginTop : "2.5%",
         marginBottom : "2.5%",
-        height : "90%",
+        marginLeft : "100px",
+        height : "85%",
         display : "flex",
         justifyContent : "center",
         alignItems : "center",
-        flexDirection : "row",
+        flexDirection : "column",
     },
     box2 : {
-        width : "50%",
-        height : "100%",
-        justifyContent : "center",
-        border : "1px solid black "
+        width : "80%",
+        height : "80%",
       },
 }))
 
@@ -26,13 +26,11 @@ const DataBox = (props) => {
     const classes = myStyles();
     return (
         <Box className={classes.box}>
-            <Box className={classes.box2}>
-                <Typography>HELLO</Typography>
-            </Box>
             <Box className = {classes.box2}>
-                <Typography variant="h1">
-                    {props.country && props.country[0].cases}
-                </Typography>
+                <SimpleTable data= {props.data}/>
+            </Box>
+            <Box className={classes.box2}>
+                <Chart data = {props.data} />
             </Box>
         </Box>
     )

@@ -28,6 +28,9 @@ export default createMuiTheme({
         justifyContent : "center",
         alignItems : "center",
         flexDirection : "row",
+    },
+    typography : {
+        fontFamily : "'Gotu', sans-serif;"
     }
 })
 
