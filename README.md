@@ -1,3 +1,13 @@
+<img src = "./src/Images/pic1.png">
+<img src = "./src/Images/pic2.png">
+<img src = "./src/Images/pic3.png">
+
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

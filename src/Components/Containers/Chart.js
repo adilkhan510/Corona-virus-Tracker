@@ -27,8 +27,6 @@ const Chart = (props)=> {
                 ]
             }]
         };
-        console.log("Habits", props.data)
-        // console.log("state",chartData)
         return (
             <div className="charts">
                 <Doughnut data={data} options={{}} />
