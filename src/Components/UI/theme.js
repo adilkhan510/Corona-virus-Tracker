@@ -17,6 +17,17 @@ export default createMuiTheme({
         flexDirection : "column",
         justifyContent : "space-evenly",
         alightItems : "center"
+    },
+    box : {
+        width : "95%",
+        marginLeft : "10px",
+        marginTop : "2.5%",
+        marginBottom : "2.5%",
+        height : "90%",
+        display : "flex",
+        justifyContent : "center",
+        alignItems : "center",
+        flexDirection : "row",
     }
 })
 

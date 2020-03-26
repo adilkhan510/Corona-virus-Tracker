@@ -7,11 +7,13 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles, Box } from '@material-ui/core'
 import axios from 'axios'
+import useData from '../Hooks/useData'
+import DataBox from './Box'
 
 const useStyles= makeStyles(theme=>({
   container : {
-    width : "75vw",
-    height : "75vh",
+    width : "85vw",
+    height : "85vh",
     backgroundColor : theme.palette.primary.dark,
     ...theme.centerItems,
     marginTop : "20px",
@@ -19,23 +21,6 @@ const useStyles= makeStyles(theme=>({
       fontSize : "36px",
       textAlign : "center"
     }
-  },
-  box : {
-    width : "95%",
-    marginLeft : "10px",
-    marginTop : "2.5%",
-    marginBottom : "2.5%",
-    height : "90%",
-    display : "flex",
-    justifyContent : "center",
-    alignItems : "center",
-    flexDirection : "row",
-  },
-  box2 : {
-    width : "50%",
-    height : "100%",
-    justifyContent : "center",
-    border : "1px solid black "
   },
   button : {
     width : "95%",
@@ -50,25 +35,44 @@ const useStyles= makeStyles(theme=>({
 }))
 
 export default function SimpleContainer() {
-  const [anchorEl, setAnchorEl] = useState(null)
-  const [data, setData] = useState("")
+  const [anchorEl, setAnchorEl] = useState("USA");
+  const [country, setCountry] = useState(null);
+  const [data, setData] = useState(null)
   const classes = useStyles();
   const handleOpen = event => {
     setAnchorEl(event.currentTarget)
   }
-  const handleClose = ()=>{
-    setAnchorEl(null)
+
+  const handleClose = (event)=>{
+
+    const countrydata = data.filter(d=>{
+      if(event.target.innerText === d.country){
+        return d
+      }
+    })
+    setCountry(countrydata)
+    console.log(countrydata)
+    setAnchorEl(null);
+  }
+
+  const getData = async () =>{
+    try{
+      const resp = await axios.get("https://coronavirus-19-api.herokuapp.com/countries")
+      if(resp.status === 200) {
+        console.log(resp.data, "recieved response");
+        setData(resp.data)
+      }else{
+        console.log("Failed request");
+      }
+    } catch {
+      console.log("Failed request, caught")
+    }
   }
   useEffect(()=>{
-    axios.get("https://coronavirus-tracker-api.herokuapp.com/v2/locations")
-    .then((response)=>{
-      console.log(response)
-    }).catch(
-      error => {
-        console.log(error)
-      }
-    )
-  })
+    getData();
+  },[])
+
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -84,20 +88,14 @@ export default function SimpleContainer() {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem className={classes.menuItem} onClick={handleClose}>Profile</MenuItem>
-            <MenuItem className={classes.menuItem} onClick={handleClose}>My account</MenuItem>
-            <MenuItem className={classes.menuItem} onClick={handleClose}>Logout</MenuItem>
+            {data && data.map((d, index)=>{
+              return(
+                <MenuItem key={index} className={classes.menuItem} onClick={handleClose}>{d.country}</MenuItem>
+              )
+            })}
           
           </Menu>
-        </Box>
-        <Box className={classes.box}>
-          <Box className={classes.box2}>
-            <Typography className = {classes.text}>HELLO</Typography>
-          </Box>
-          <Box className = {classes.box2}>
-            <Typography className = {classes.text}>
-            </Typography>
-          </Box>
+          <DataBox country={country} />
         </Box>
       </Container>
     </React.Fragment>
