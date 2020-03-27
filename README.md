@@ -1,3 +1,5 @@
+Live Project can found here :  https://covid-19----tracker.herokuapp.com/
+
 I created this project to get more practice in working with react hooks and material-ui. I also didn't find any apps that were dynamically showing the data for each country so I figured I should build it myself. 
 In the pictures below you can see how the app operates.
 User stories :
