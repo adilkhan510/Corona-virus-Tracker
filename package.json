@@ -1,6 +1,6 @@
 {
   "name": "corona",
-  "version": "10.16.3",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.7",
@@ -16,6 +16,7 @@
     "react-scripts": "3.4.0"
   },
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -35,5 +36,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "resolutions": {
+    "@babel/preset-env": "^7.8.7"
   }
 }
