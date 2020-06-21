@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,6 +7,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { Container, Tabs, Tab } from '@material-ui/core';
+import { ChartContext } from '../Context/chartContext'
 
 const useStyles = makeStyles({
   table: {
@@ -15,9 +17,14 @@ const useStyles = makeStyles({
 });
 
 export default function SimpleTable(props) {
+  const { chartType, setChartType } = useContext(ChartContext)
+  const handleChange = (event) => {
+    setChartType(event.target.value)
+  }
   const classes = useStyles();
   console.log("props....",props.data)
   return (
+    <Paper>
     <TableContainer component={Paper} className={classes.table}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
@@ -40,5 +47,6 @@ export default function SimpleTable(props) {
         </TableBody>
       </Table>
     </TableContainer>
+    </Paper>
   );
 }
