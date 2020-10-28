@@ -11,9 +11,6 @@ Stack Used :
   2. React
   3. JavaScript
   4. Material-ui
-<img src = "./src/Images/pic1.png">
-<img src = "./src/Images/pic2.png">
-<img src = "./src/Images/pic3.png">
 
 
 
